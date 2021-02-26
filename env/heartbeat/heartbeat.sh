@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 export USER=`whoami`
 export HOST=`hostname`
@@ -13,7 +13,7 @@ function send_data(){
          --data-raw "$data"
 }
 
-for (( ; ; ))
+while [ true ]
 do
    send_data
    sleep 10
