@@ -1,0 +1,56 @@
+---
+version: "3"
+services:
+  pong:
+    image: "ludenus/pong:0.0.1"
+    ports:
+    - "8200:80"
+    environment:
+      PONG_LISTENING_ADDRESS: ":80"
+
+  influxdb:
+    image: "influxdb:2.0.4"
+    ports:
+    - "8186:8086"
+    environment:
+      DOCKER_INFLUXDB_INIT_MODE: ${DOCKER_INFLUXDB_INIT_MODE}
+      DOCKER_INFLUXDB_INIT_USERNAME: ${DOCKER_INFLUXDB_INIT_USERNAME}
+      DOCKER_INFLUXDB_INIT_PASSWORD: ${DOCKER_INFLUXDB_INIT_PASSWORD}
+      DOCKER_INFLUXDB_INIT_ORG: ${DOCKER_INFLUXDB_INIT_ORG}
+      DOCKER_INFLUXDB_INIT_BUCKET: ${DOCKER_INFLUXDB_INIT_BUCKET}
+      DOCKER_INFLUXDB_INIT_RETENTION: ${DOCKER_INFLUXDB_INIT_RETENTION}
+      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: ${DOCKER_INFLUXDB_INIT_ADMIN_TOKEN}
+
+
+  heartbeat:
+    build: heartbeat/
+    environment:
+      INFLUX_URL: "http://influxdb:8086"
+      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: ${DOCKER_INFLUXDB_INIT_ADMIN_TOKEN}
+      DOCKER_INFLUXDB_INIT_ORG: ${DOCKER_INFLUXDB_INIT_ORG}
+      DOCKER_INFLUXDB_INIT_BUCKET: ${DOCKER_INFLUXDB_INIT_BUCKET}
+
+
+#   grafana:
+#     image: "grafana/grafana:7.4.3"
+#     ports:
+#     - "3100:3000"
+#     volumes:
+# #    - grafana_data:/var/lib/grafana
+#     - ./grafana/provisioning/:/etc/grafana/provisioning/:ro
+#     environment:
+#       GF_SECURITY_ADMIN_PASSWORD: "********"
+
+
+
+  # gatling:
+  #   image: "ludenus/gatling-gradle:latest"
+  #   environment: 
+  #   - GATLING_HTTP_WARMUP_URL=http://pong:80
+  #   - GATLING_PONGSERVICE_URL=http://pong:80
+  #   - GATLING_MAX_DURATION_SECONDS=100
+  #   - GATLING_RAMP_USERS=200
+  #   depends_on: 
+  #     - pong
+  #     - influxdb
+  #     - grafana
