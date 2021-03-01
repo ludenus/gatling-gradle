@@ -6,7 +6,7 @@
         "datasource": "-- Grafana --",
         "enable": true,
         "hide": true,
-        "iconColor": "rgba(0, 211, 255, 1)",
+        "iconColor": "rgba(255, 255, 255, 1)",
         "name": "Annotations & Alerts",
         "type": "dashboard"
       }
@@ -19,7 +19,7 @@
   "panels": [
     {
       "aliasColors": {
-        "value e63f09e4823d": "rgb(255, 255, 255)"
+        "value telegraf": "rgb(255, 255, 255)"
       },
       "bars": false,
       "dashLength": 10,
@@ -148,7 +148,9 @@
       }
     },
     {
-      "aliasColors": {},
+      "aliasColors": {
+        "value telegraf": "semi-dark-green"
+      },
       "bars": false,
       "dashLength": 10,
       "dashes": false,
@@ -285,7 +287,7 @@
     },
     {
       "aliasColors": {
-        "value e63f09e4823d": "semi-dark-red"
+        "value telegraf": "semi-dark-red"
       },
       "bars": false,
       "dashLength": 10,
@@ -422,7 +424,9 @@
       }
     },
     {
-      "aliasColors": {},
+      "aliasColors": {
+        "value {host=\"heartbeat\", user=\"root\"}": "rgb(163, 163, 163)"
+      },
       "bars": false,
       "dashLength": 10,
       "dashes": false,

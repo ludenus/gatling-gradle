@@ -2,6 +2,7 @@
 version: "3"
 services:
   pong:
+    hostname: pong
     image: ludenus/pong:0.0.1
     ports:
     - "8200:80"
@@ -9,6 +10,7 @@ services:
       PONG_LISTENING_ADDRESS: ":80"
 
   telegraf:
+    hostname: telegraf
     image: telegraf:1.17.3-alpine
     ports:
     - "8294:8094"
@@ -20,6 +22,7 @@ services:
       DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: ${DOCKER_INFLUXDB_INIT_ADMIN_TOKEN}
 
   influxdb:
+    hostname: influxdb
     image: influxdb:2.0.4-alpine
     ports:
     - "8186:8086"
@@ -34,6 +37,7 @@ services:
 
 
   heartbeat:
+    hostname: heartbeat
     build: heartbeat/
     environment:
       INFLUX_URL: "http://influxdb:8086"
@@ -43,6 +47,7 @@ services:
 
 
   grafana:
+    hostname: grafana
     image: grafana/grafana:7.4.3
     ports:
     - "3100:3000"
@@ -54,6 +59,7 @@ services:
 
 
   gatling:
+    hostname: gatling
     image: "ludenus/gatling-gradle:latest"
     environment:
       GATLING_HTTP_WARMUP_URL: http://pong:80
