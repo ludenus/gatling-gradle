@@ -21,7 +21,7 @@
       "aliasColors": {
         "value telegraf": "rgb(255, 255, 255)"
       },
-      "bars": false,
+      "bars": true,
       "dashLength": 10,
       "dashes": false,
       "datasource": "InfluxDB_v2_Flux",
@@ -52,7 +52,7 @@
         "total": true,
         "values": true
       },
-      "lines": true,
+      "lines": false,
       "linewidth": 1,
       "nullPointMode": "null",
       "options": {
@@ -151,7 +151,7 @@
       "aliasColors": {
         "value telegraf": "semi-dark-green"
       },
-      "bars": false,
+      "bars": true,
       "dashLength": 10,
       "dashes": false,
       "datasource": "InfluxDB_v2_Flux",
@@ -190,7 +190,7 @@
         "total": true,
         "values": true
       },
-      "lines": true,
+      "lines": false,
       "linewidth": 1,
       "nullPointMode": "null",
       "options": {
@@ -289,7 +289,7 @@
       "aliasColors": {
         "value telegraf": "semi-dark-red"
       },
-      "bars": false,
+      "bars": true,
       "dashLength": 10,
       "dashes": false,
       "datasource": "InfluxDB_v2_Flux",
@@ -328,7 +328,7 @@
         "total": true,
         "values": true
       },
-      "lines": true,
+      "lines": false,
       "linewidth": 1,
       "nullPointMode": "null",
       "options": {
@@ -336,8 +336,8 @@
       },
       "percentage": false,
       "pluginVersion": "7.4.3",
-      "pointradius": 2,
-      "points": false,
+      "pointradius": 1,
+      "points": true,
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
@@ -427,7 +427,7 @@
       "aliasColors": {
         "value {host=\"heartbeat\", user=\"root\"}": "rgb(163, 163, 163)"
       },
-      "bars": false,
+      "bars": true,
       "dashLength": 10,
       "dashes": false,
       "datasource": "InfluxDB_v2_Flux",
@@ -459,7 +459,7 @@
         "total": false,
         "values": true
       },
-      "lines": true,
+      "lines": false,
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
@@ -468,7 +468,7 @@
       },
       "percentage": false,
       "pluginVersion": "7.4.3",
-      "pointradius": 5,
+      "pointradius": 0.5,
       "points": false,
       "renderer": "flot",
       "seriesOverrides": [],
