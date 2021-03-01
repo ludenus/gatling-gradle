@@ -1,5 +1,10 @@
 # Gatling with Gradle
-Sample project
+Gatling with Gradle, InfluxDB v2.0 with Telegraf and Grafana for reporting.   
+
+## run environment
+```
+docker-compose up
+```
 
 ## run all simulations
 ```
@@ -13,3 +18,9 @@ export GATLING_MAX_DURATION_SECONDS=100
 ```
 ./gradlew clean gatlingRun-load.PongSimulation
 ```
+
+## influxdb UI
+http://localhost:8186/
+
+## grafana dashboard
+http://localhost:3100/d/nVrrhs1mk/dasboard

@@ -2,7 +2,7 @@
 version: "3"
 services:
   pong:
-    image: "ludenus/pong:0.0.1"
+    image: ludenus/pong:0.0.1
     ports:
     - "8200:80"
     environment:
@@ -11,14 +11,16 @@ services:
   telegraf:
     image: telegraf:1.17.3-alpine
     ports:
-    - "8292:8092/udp"
-    - "8225:8125/udp"
     - "8294:8094"
     volumes:
     - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+    environment:
+      DOCKER_INFLUXDB_INIT_ORG: ${DOCKER_INFLUXDB_INIT_ORG}
+      DOCKER_INFLUXDB_INIT_BUCKET: ${DOCKER_INFLUXDB_INIT_BUCKET}
+      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: ${DOCKER_INFLUXDB_INIT_ADMIN_TOKEN}
 
   influxdb:
-    image: "influxdb:2.0.4"
+    image: influxdb:2.0.4-alpine
     ports:
     - "8186:8086"
     environment:
@@ -41,7 +43,7 @@ services:
 
 
   grafana:
-    image: "grafana/grafana:7.4.3"
+    image: grafana/grafana:7.4.3
     ports:
     - "3100:3000"
     volumes:
@@ -51,15 +53,17 @@ services:
       GF_SECURITY_ADMIN_PASSWORD: ${GF_SECURITY_ADMIN_PASSWORD}
 
 
-
-  # gatling:
-  #   image: "ludenus/gatling-gradle:latest"
-  #   environment: 
-  #   - GATLING_HTTP_WARMUP_URL=http://pong:80
-  #   - GATLING_PONGSERVICE_URL=http://pong:80
-  #   - GATLING_MAX_DURATION_SECONDS=100
-  #   - GATLING_RAMP_USERS=200
-  #   depends_on: 
-  #     - pong
-  #     - influxdb
-  #     - grafana
+  gatling:
+    image: "ludenus/gatling-gradle:latest"
+    environment:
+      GATLING_HTTP_WARMUP_URL: http://pong:80
+      GATLING_PONGSERVICE_URL: http://pong:80
+      GATLING_DATA_GRAPIHTE_HOST: telegrgaf
+      GATLING_DATA_GRAPIHTE_PORT: 8094
+      GATLING_MAX_DURATION_SECONDS: 100
+      GATLING_RAMP_USERS: 200
+    depends_on:
+    - pong
+    - telegraf
+    - influxdb
+    - grafana
