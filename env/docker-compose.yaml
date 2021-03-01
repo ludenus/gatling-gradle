@@ -8,6 +8,15 @@ services:
     environment:
       PONG_LISTENING_ADDRESS: ":80"
 
+  telegraf:
+    image: telegraf:1.17.3-alpine
+    ports:
+    - "8292:8092/udp"
+    - "8225:8125/udp"
+    - "8294:8094"
+    volumes:
+    - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+
   influxdb:
     image: "influxdb:2.0.4"
     ports:
