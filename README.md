@@ -22,5 +22,14 @@ export GATLING_MAX_DURATION_SECONDS=100
 ## influxdb UI
 http://localhost:8186/
 
+```
+user: admin
+pass: ********
+```
+
 ## grafana dashboard
 http://localhost:3100/d/nVrrhs1mk/dasboard
+```
+user: admin
+pass: ********
+```
