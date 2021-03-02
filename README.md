@@ -3,6 +3,7 @@ Gatling with Gradle, InfluxDB v2.0 with Telegraf and Grafana for reporting.
 
 ## run environment
 ```
+cd env
 docker-compose up
 ```
 
